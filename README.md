@@ -836,3 +836,201 @@ repeat {
 
 
 ### 11. 옵셔널
+
+1. **옵셔널이란??**
+
+- **값이 있을 수도, 없을 수도 있음**
+- **nil**이 할당 될 수 있는지 없는지 표현
+
+```swift
+// someOptionalParm에 nil이 할당 될 수 있다.
+func someFunction(someOptionalParam: Int?) {
+       // ....
+}
+
+/// someParm에 nil이 할당 될 수 없다.
+func someFunction(someParam: Int) {
+       // ....
+}
+
+someFunction(someOptionalParam: nil) // 옵셔널 파라미터 nil 보낼 수 있음 
+// someFunction(someParam: nil) // nil 파라미터로 보낼 수 없음
+```
+
+
+
+
+
+2. **옵셔널을 쓰는 이유**
+
+- **명시적 표현**
+  1. nil의 가능성을 코드만으로 표현가능
+  2. 문서/주석 작성 시간 절약
+
+- **안전한 사용**
+  1. 전달받은 값이 옵셔널이 아니라면 nil 체크를 하지 않고 사용가능
+  2. 예외 상황을 최소화 하는 안전한 코딩
+  3. 효율적 코딩
+
+
+
+
+
+3. **옵셔널 문법과 선언**
+
+- 옵셔널 문법 = enum + generics 
+- 옵셔널 선언 - 열거형
+
+```swift
+enum Optional<Wrapped>: ExpressibleByNiliteral {
+         case none
+         case some(Wrapped)
+}
+
+let optionalValue: Optional<Int> = nil
+let optionalValue: Int? = nil // Int의 옵셔널 타입. ? 띄어쓰면 안됨.
+```
+
+
+
+- **옵셔널 표현**
+
+1. **느낌표**를 이용한 `암시적 추출 옵셔널 `
+
+```swift
+// Implicitly Unwrapped Optional
+var OptionalValue: Int! = 100
+
+switch OptionalValue {
+case .none:
+    print("This Optional variable is nil")
+case .some(let value):
+    print("Value is \(value)")
+}
+
+// 기존 변수처럼 사용 가능
+OptionalValue = OptionalValue + 1
+
+// nil 할당 가능
+OptionalValue = nil
+
+// 잘못된 접근으로 인한 런타임 오류 발생
+// nil 대입 후 값에 접근하려 하여서
+//OptionalValue = OptionalValue + 1
+```
+
+2. **물음표**를 이용한 옵셔널
+
+```swift
+// Optional
+var optionalValue: Int? = 100 // Int형이 들어있을수도 없을수도(nil) 있다.
+
+switch optionalValue {
+case .none:
+    print("This Optional variable is nil")
+case .some(let value):
+    print("Value is \(value)")
+}
+
+// nil 할당 가능
+optionalValue = nil
+
+// 기존 변수처럼 사용불가 - 옵셔널과 일반 값은 다른 타입이므로 연산불가
+//optionalValue = optionalValue + 1
+```
+
+
+
+
+
+### 12. 옵셔널 추출
+
+1. **옵셔널 추출이란?** 
+
+- 옵셔널에 들어있는 값을 사용하기 위해 꺼내오는 것
+
+
+
+
+
+2. **옵셔널 방식**
+
+- **옵셔널 바인딩**
+
+1. **nil 체크 + 안전한 추출**
+2. 옵셔널 안에 값이 들어있는지 확인하고 값이 있으면 값을 꺼내온다.
+3. `if-let` 방식 사용
+
+```swift
+func printName(_ name: String) {
+    print(name)
+}
+
+var myName: String? = nil // 옵셔널 타입
+
+//printName(myName)
+// 전달되는 값의 타입(스트링 타입 아닌 옵셔널 타입)이 다르기 때문에 컴파일 오류발생
+
+if let name: String = myName { // 변수 name은 if let 구문 내에서만 사용 가능
+    printName(name)
+} else {
+    print("myName == nil")
+}
+
+
+var yourName: String! = nil
+
+if let name: String = yourName {
+    printName(name)
+} else {
+    print("yourName == nil")
+}
+
+
+// ,를 사용해 한 번에 여러 옵셔널을 바인딩 가능
+// 모든 옵셔널에 값이 있을 때만 동작 (하나라도 nil 이면 X)
+myName = "hey"
+yourName = nil
+
+if let name = myName, let friend = yourName { 
+    print("\(name) and \(friend)")
+}
+// yourName이 nil이기 때문에 실행 X
+
+yourName = "hana"
+
+if let name = myName, let friend = yourName {
+    print("\(name) and \(friend)")
+}
+// hey and hana
+```
+
+
+
+- **강체추출 **
+1. 옵셔널에 값이 들어있는지 아닌지 확인하지 않고 강제로 값을 꺼내는 방식
+2. 만약 값이 없을경우(nil), **런타임 오류**가 발생하기 때문에 추천되지 않는다.
+
+```swift
+var myName: String? = "hey"
+var youName: String! = nil // 암시적 추출로 선언된 옵셔널 변수는 printName(yourName) 구문에서 !있다 가정됨.
+
+
+printName(myName!) // 값 있음 -> hey 강제추출
+
+myName = nil 
+
+//print(myName!)
+// 값이 없으므로 런타임 오류 발생
+
+yourName = nil
+
+//printName(yourName) // ! 없이 강제추출 가능. 알아서 붙여서 넘겨줌.
+// nil 값이 전달되기 때문에 런타임 오류발생
+```
+
+
+
+
+
+## 2단원 - 다양한 표현 및 확장
