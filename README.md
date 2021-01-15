@@ -1304,3 +1304,250 @@ jina.selfIntroduce() // 저는 Swift반 jina입니다
 
 ### 15. 열거형
 
+1. **열거형** 
+
+- 다른 언어의 열거형과 많이 다르다.
+
+- 유사한 종류의 여러 값을 한 곳에 모아서 정의한 것  예) 요일, 월, 계절 등
+- enum 자체가 하나의 데이터 타입. 대문자 카멜케이스 사용하여 이름 정의
+- 각 case는 소문자 카멜케이스로 정의
+- 각 case는 그 자체가 고유의 값(각 case에 자동으로 정수값이 할당되지 않음)
+- 각 case는 한 줄에 개별, 또는 여러개 정의할 수 있다.
+
+```swift
+enum 이름 {
+	case 이름1
+	case 이름2
+	case 이름3, 이름4, 이름5
+	// ...
+}
+
+// 예제
+enum BoostCamp {
+  case iosCamp
+  case androidCamp
+  case webCamp
+}
+```
+
+
+
+
+
+2. **열거형 사용** 
+
+- 타입이 명확할 경우, 열거형의 이름을 생략 할 수 있다. 
+
+```swift
+enum Weekday {
+    case mon
+    case tue
+    case wed
+    case thu, fri, sat, sun
+}
+
+// 열거형 타입과 케이스 모두 사용 가능
+var day: Weekday = Weekday.mon
+
+// 타입이 명확하다면 .케이스 처럼 표현해도 무방
+day = .tue
+
+print(day) // tue
+
+// switch의 비교값에 열거형 타입이 위치할 때
+// 모든 열거형 케이스를 포함한다면
+// default를 작성할 필요가 없다
+switch day {
+case .mon, .tue, .wed, .thu:
+  print("평일입니다")
+case Weekday.fri:
+    print("불금 파티!!")
+case .sat, .sun:
+    print("신나는 주말!!")
+}
+```
+
+
+
+
+
+3. **rawValue (원시값)**
+
+- C 언어의 enum 처럼 정수값을 가질 수 있다.
+- rawValue는 case별로 각각 다른 값을 가져야한다.
+- 자동으로 1이 증가된 값 할당
+- rawValue를 반드시 지닐 필요가 없다면 굳이 만들지 않아도 된다.
+
+```swift
+enum Fruit: Int {
+    case apple = 0
+    case grape = 1
+    case peach
+    
+    // mango와 apple의 원시값이 같으므로 
+    // mango 케이스의 원시값을 0으로 정의할 수 없다
+//    case mango = 0
+}
+
+print("Fruit.peach.rawValue == \(Fruit.peach.rawValue)")
+// Fruit.peach.rawValue == 2 // 이전 값보다 1 증가한 값 자동 할당
+```
+
+- 정수 타입 뿐만 아니라, Hashable 프로토콜을 따르는 모든 타입을 원시값의 타입으로 지정 할 수있다.
+
+```swift
+enum School: String {
+    case elementary = "초등"
+    case middle = "중등"
+    case high = "고등"
+    case university
+}
+
+print("School.middle.rawValue == \(School.middle.rawValue)")
+// School.middle.rawValue == 중등
+
+// 열거형의 원시값 타입이 String일 때, 원시값이 지정되지 않았다면
+// case 이름을 원시값으로 사용
+print("School.university.rawValue == \(School.university.rawValue)")
+// School.middle.rawValue == university
+```
+
+
+
+
+
+4. **원시값을 통한 초기화**
+
+- rawValue를 통해 초기화 할 수 있다.
+- rawValue가 case에 해당하지 않을 수 있으므로, rawValue를 통해 초기화 한 인스턴스는 **옵셔널 타입**
+
+```swift
+// rawValue를 통해 초기화 한 열거형 값은 옵셔널 타입이므로(값이 nil일수도 있으므로) Fruit 타입이 아님
+//let apple: Fruit = Fruit(rawValue: 0)
+let apple: Fruit? = Fruit(rawValue: 0)
+
+// if let 구문을 사용하면 rawValue에 해당하는 케이스를 곧바로 사용할 수 있다
+if let orange: Fruit = Fruit(rawValue: 5) {
+    print("rawValue 5에 해당하는 케이스는 \(orange)입니다")
+} else {
+    print("rawValue 5에 해당하는 케이스가 없습니다")
+} // rawValue 5에 해당하는 케이스가 없습니다
+```
+
+
+
+
+
+5. **메서드** 
+
+- Swift의 열거형에는 메서드도 추가할 수 있다.
+
+```swift
+enum Month {
+    case dec, jan, feb
+    case mar, apr, may
+    case jun, jul, aug
+    case sep, oct, nov
+    
+    func printMessage() {
+        switch self {
+        case .mar, .apr, .may:
+            print("따스한 봄~")
+        case .jun, .jul, .aug:
+            print("여름 더워요~")
+        case .sep, .oct, .nov:
+            print("가을은 독서의 계절!")
+        case .dec, .jan, .feb:
+            print("추운 겨울입니다")
+        }
+    }
+}
+
+Month.mar.printMessage()
+```
+
+
+
+
+
+### 16. 클래스 vs 구조체 / 열거형
+
+![2_16](md_img/2_16.png)
+
+- 클래스는 **참조 타입**, 열거형과 구조체는 **값 타입**이라는 것이 가장 큰 차이
+- 클래스는 상속(단일상속)이 가능하지만, 열거형과 구조체는 상속이 불가능
+
+
+
+
+
+1. **값 타입과 참조 타입 비교**
+
+- 값 타입(Value Type) : 데이터를 전달 할 때 값을 복사하여 전달
+- 참조 타입(Reference Type) : 데이터를 전할 할 때 값의 메모리 위치를 전달
+
+```swift
+struct ValueType {
+    var property = 1
+}
+
+class ReferenceType {
+    var property = 1
+}
+
+// 첫 번째 구조체 인스턴스
+let firstStructInstance = ValueType()
+
+// 두 번째 구조체 인스턴스에 첫 번째 인스턴스 값 복사
+var secondStructInstance = firstStructInstance
+
+// 두 번째 구조체 인스턴스 프로퍼티 값 수정
+secondStructInstance.property = 2
+
+// 두 번째 구조체 인스턴스는 첫 번째 구조체를 똑같이 복사한 
+// 별도의 인스턴스이기 때문에 
+// 두 번째 구조체 인스턴스의 프로퍼티 값을 변경해도
+// 첫 번째 구조체 인스턴스의 프로퍼티 값에는 영향이 없음
+print("first struct instance property : \(firstStructInstance.property)")    // 1
+print("second struct instance property : \(secondStructInstance.property)")  // 2
+
+
+// 클래스 인스턴스 생성 후 첫 번째 참조 생성
+let firstClassReference = ReferenceType()
+// 두 번째 참조 변수에 첫 번째 참조 할당
+let secondClassReference = firstClassReference
+secondClassReference.property = 2
+
+// 두 번째 클래스 참조는 첫 번째 클래스 인스턴스를 참조하기 때문에
+// 두 번째 참조를 통해 인스턴스의 프로퍼티 값을 변경하면
+// 첫 번째 클래스 인스턴스의 프로퍼티 값을 변경하게 됨
+print("first class reference property : \(firstClassReference.property)")    // 2
+print("second class reference property : \(secondClassReference.property)")  // 2
+```
+
+
+
+
+
+2. **값 타입을 사용하는 경우**
+
+- 연관된 몇몇의 값들을 모아서 하나의 데이터 타입으로 표현하고 싶은 경우
+- 다른 객체 또는 함수 등으로 전달될 때 참조가 아니라 복사(값 복사) 할 경우
+- 자신을 상속할 필요가 없거나, 다른 타입을 상속 받을 필요가 없는 경우
+
+
+
+
+
+**3. 스위프트에서의 사용**
+
+- 스위프트의 기본 데이터 타입은 모두 구조체로 구현되어있다.
+- 스위프트는 구조체와 열거형 사용 선호
+- Apple 프레임워크는 대부분 클래스 사용
+- 구조체/클래스 선택과 사용은 개발자의 몫
+
+
+
+
+
+### 17. 클로저 기본
