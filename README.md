@@ -1785,3 +1785,232 @@ print(result) // 20
 
 ### 19. 프로퍼티
 
+1. **프로퍼티의 종류**
+
+- **인스턴스 저장 프로퍼티**
+- **타입 저장 프로퍼티**
+- **인스턴스 연산 프로퍼티**
+- **타입 연산 프로퍼티**
+- 지연 저장 프로퍼티
+
+
+
+
+
+2. **정의와 사용**
+
+- 프로퍼티는 구조체, 클래스, 열거형 내부에 구현할 수 있다.
+- 다만 열거형 내부에는 연산 프로퍼티만 구현할 수 있다.
+- 연산 프로퍼티는 `var`로만 선언할 수 있다.
+- 연산프로퍼티를 **읽기 전용**으로는 구현할 수 있지만, 쓰기 전용으로는 구현할 수 없다.
+- 읽기전용으로 구현하려면 `get` 블럭만 작성해주면 된다.  `get`블럭은 생략할 수 있다.
+- 읽기, 쓰기 모두 가능하게 하려면 `get` 블럭과 `set`블럭 모두 구현해주면 된다.
+- `set` 블럭에서 **암시적 매개변수** `newValue`를 사용할 수 있다.
+
+```swift
+struct Student {
+    
+    // 인스턴스 저장 프로퍼티
+    var name: String = ""
+    var `class`: String = "Swift"
+    var koreanAge: Int = 0
+    
+    // 인스턴스 연산 프로퍼티
+    var westernAge: Int {
+        get {
+            return koreanAge - 1
+        }
+        
+        set(inputValue) {
+            koreanAge = inputValue + 1
+        }
+    }
+    
+    // 타입 저장 프로퍼티
+    static var typeDescription: String = "학생"
+    
+    /*
+    // 인스턴스 메서드
+    func selfIntroduce() {
+        print("저는 \(self.class)반 \(name)입니다")
+    }
+     */
+    
+    // 읽기전용 인스턴스 연산 프로퍼티
+    // 간단히 위의 selfIntroduce() 메서드를 대체할 수 있다
+    var selfIntroduction: String {
+        get {
+            return "저는 \(self.class)반 \(name)입니다"
+        }
+    }
+        
+    /*
+     // 타입 메서드
+     static func selfIntroduce() {
+     print("학생타입입니다")
+     }
+     */
+    
+    // 읽기전용 타입 연산 프로퍼티
+    // 읽기전용에서는 get 생략할 수 있다
+    static var selfIntroduction: String {
+        return "학생타입입니다"
+    }
+}
+
+// 타입 연산 프로퍼티 사용
+print(Student.selfIntroduction)
+// 학생타입입니다
+
+// 인스턴스 생성
+var hey: Student = Student()
+hey.koreanAge = 10
+
+// 인스턴스 저장 프로퍼티 사용
+hey.name = "hey"
+print(hey.name)
+// hey
+
+// 인스턴스 연산 프로퍼티 사용
+print(hey.selfIntroduction)
+// 저는 Swift반 hey입니다
+
+print("제 한국나이는 \(hey.koreanAge)살이고, 미국나이는 \(hey.westernAge)살입니다.")
+// 제 한국나이는 10살이고, 미국나이는 9살입니다.
+```
+
+ 
+
+
+
+3. **응용**
+
+```swift
+struct Money {
+    var currencyRate: Double = 1100
+    var dollar: Double = 0
+    var won: Double {
+        get {
+            return dollar * currencyRate
+        }
+        set {
+            dollar = newValue / currencyRate // 매개변수 안 적어줘도 newValue 암시적으로
+        }
+    }
+}
+
+var moneyInMyPocket = Money()
+
+moneyInMyPocket.won = 11000
+
+print(moneyInMyPocket.won)
+// 11000
+
+moneyInMyPocket.dollar = 10
+
+print(moneyInMyPocket.won)
+// 11000
+```
+
+
+
+
+
+4. **지역변수 및 전역변수**
+
+- 저장 프로퍼티와 연산 프로퍼티의 기능은 함수, 메서드, 클로저, 타입 등의 외부에 위치한 지역/전역 변수에도 모두 사용 가능
+
+```swift
+var a: Int = 100
+var b: Int = 200
+var sum: Int {
+    return a + b
+}
+
+print(sum) // 300
+```
+
+
+
+
+
+### 20. 프로퍼티 감시자
+
+1. **프로퍼티 감시자**
+
+- 프로퍼티 감시자를 사용하면 **프로퍼티의 값이 변경**될 때 원하는 동작을 수행할 수 있다.
+- 값이 변경되기 직전에 `willSet` 블럭이, 값이 변경된 직후에 `didSet`블럭이 호출된다.
+- 둘 중 하나만 구현해 주어도 무관
+- 변경되려는 값이 **기존 값과 똑같더라도** 프로퍼티 감시자는 항상 동작
+- **`willSet`** 블럭에서는 암시적 매개변수 **`newValue`**를, **`didSet`** 블럭에서는 **`oldValue`**를 사용
+- **연산 프로퍼티에는 사용할 수 없다.**
+- 함수, 메서드, 클로저, 타입 등의 지역/전역 변수에 모두 사용 가능
+
+
+
+
+
+2. **정의 및 사용**
+
+```swift
+struct Money {
+    // 프로퍼티 감시자 사용
+    var currencyRate: Double = 1100 {
+        willSet(newRate) {
+            print("환율이 \(currencyRate)에서 \(newRate)으로 변경될 예정입니다")
+        }
+        
+        didSet(oldRate) {
+            print("환율이 \(oldRate)에서 \(currencyRate)으로 변경되었습니다")
+        }
+    }
+
+    // 프로퍼티 감시자 사용
+    var dollar: Double = 0 {
+        // willSet의 암시적 매개변수 이름 newValue
+        willSet {
+            print("\(dollar)달러에서 \(newValue)달러로 변경될 예정입니다")
+        }
+        
+        // didSet의 암시적 매개변수 이름 oldValue
+        didSet {
+            print("\(oldValue)달러에서 \(dollar)달러로 변경되었습니다")
+        }
+    }
+
+    // 연산 프로퍼티
+    var won: Double {
+        get {
+            return dollar * currencyRate
+        }
+        set {
+            dollar = newValue / currencyRate
+        }
+        
+        /* 프로퍼티 감시자와 연산 프로퍼티 기능을 동시에 사용할 수 없다
+        willSet {
+            
+        }
+         */
+    }    
+}
+
+var moneyInMyPocket: Money = Money()
+
+// 환율이 1100.0에서 1150.0으로 변경될 예정입니다
+moneyInMyPocket.currencyRate = 1150
+// 환율이 1100.0에서 1150.0으로 변경되었습니다
+
+// 0.0달러에서 10.0달러로 변경될 예정입니다
+moneyInMyPocket.dollar = 10
+// 0.0달러에서 10.0달러로 변경되었습니다
+
+print(moneyInMyPocket.won)
+// 11500.0
+```
+
+
+
+
+
+### 21. 상속
