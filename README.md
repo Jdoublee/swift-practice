@@ -1568,7 +1568,7 @@ print("second class reference property : \(secondClassReference.property)")  // 
 - 클로저는 중괄호 { }로 감싸져있다.
 - 괄호 이용해 파라미터 정의
 - -> 을 이용해 반환 타입 명시
-- "in" 키워드를 이용해 실행 코드와 분리
+- `in` 키워드를 이용해 실행 코드와 분리
 
 ```swift
 { (매개변수 목록) -> 반환타입 in
@@ -1941,7 +1941,7 @@ print(sum) // 300
 - 값이 변경되기 직전에 `willSet` 블럭이, 값이 변경된 직후에 `didSet`블럭이 호출된다.
 - 둘 중 하나만 구현해 주어도 무관
 - 변경되려는 값이 **기존 값과 똑같더라도** 프로퍼티 감시자는 항상 동작
-- **`willSet`** 블럭에서는 암시적 매개변수 **`newValue`**를, **`didSet`** 블럭에서는 **`oldValue`**를 사용
+- **`willSet`** 블럭에서는 암시적 매개변수 **`newValue`** 를, **`didSet`** 블럭에서는 **`oldValue`** 를 사용
 - **연산 프로퍼티에는 사용할 수 없다.**
 - 함수, 메서드, 클로저, 타입 등의 지역/전역 변수에 모두 사용 가능
 
@@ -2041,7 +2041,7 @@ class 이름: 상속받을 클래스 이름 { // 부모클래스 이름 적어�
 - **`final`** 키워드를 사용하면 재정의(**override**)를 방지할 수 있다.
 - **`static`** 키워드를 사용해 타입 메서드를 만들면 재정의 불가능
 - **`class`** 키워드를 사용해 타입 메서드를 만들면 재정의 가능
-- **`class`** 앞에 **`final`**을 붙이면 **`static`** 키워드를 사용한것과 동일하게 동작
+- **`class`** 앞에 **`final`** 을 붙이면 **`static`** 키워드를 사용한것과 동일하게 동작
 - **`override`** 키워드를 사용해 부모 클래스의 메서드를 재정의 할 수 있다.
 
 ```swift
@@ -2185,7 +2185,7 @@ jason.nickName = "j"
 
 2-1. **이니셜라이저(initializer)**
 
-- 이니셜라이저 **`init`**을 통해 인스턴스가 가져야 할 초기값을 전달할 수 있다.
+- 이니셜라이저 **`init`** 을 통해 인스턴스가 가져야 할 초기값을 전달할 수 있다.
 
 ```swift
 class PersonB {
@@ -2270,7 +2270,7 @@ happy.goOut()
 2-2. **실패가능한 이니셜라이저**
 
 - 이니셜라이저 매개변수로 전달되는 초기값이 잘못된 경우 인스턴스 생성에 실패할 수 있다.
-- 인스턴스 생성에 실패하면 **`nil`**을 반환
+- 인스턴스 생성에 실패하면 **`nil`** 을 반환
 - 실패가능한 이니셜라이저의 반환타입은 **옵셔널 타입**
 - **`init?`**  사용
 
@@ -2309,7 +2309,7 @@ print(batman) // nil
 
 3. **디이니셜라이저(deinitializer)**
 
-- **`deinit`**은 클래스의 인스턴스가 메모리에서 해제되는 시점에서 호출된다.
+- **`deinit`** 은 클래스의 인스턴스가 메모리에서 해제되는 시점에서 호출된다.
 - 인스턴스가 해제되는 시점에 해야할 일을 구현할 수 있다.
 - **`deinit`** 은 매개변수를 지닐 수 없다.
 - 자동으로 호출되므로 직접 호출할 수 없다.
@@ -2348,5 +2348,123 @@ donald = nil // donald 인스턴스가 더이상 필요없으므로 메모리에
 
 ### 23. 옵셔널 체이닝과 nil 병합
 
+1. **옵셔널 체이닝**
 
+- 옵셔널 체이닝은 옵셔널의 내부의 내부의 내부로 옵셔널이 연결되어 있을 때 유용하게 활용할 수 있다.
+- 매번 **nil** 확인을 하지 않고, 최종적으로 원하는 값이 있는지 없는지 확인할 수 있다.
+
+```swift
+// 예제 클래스
+// 사람 클래스
+class Person {
+    var name: String
+    var job: String?
+    var home: Apartment?
+    
+    init(name: String) {
+        self.name = name
+    }
+}
+// 사람이 사는 집 클래스
+class Apartment {
+    var buildingNumber: String
+    var roomNumber: String
+    var `guard`: Person?
+    var owner: Person?
+    
+    init(dong: String, ho: String) {
+        buildingNumber = dong
+        roomNumber = ho
+    }
+}
+
+
+// 옵셔널 체이닝 사용
+let hey: Person? = Person(name: "hey")
+let apart: Apartment? = Apartment(dong: "101", ho: "202")
+let superman: Person? = Person(name: "superman")
+
+
+// 옵셔널 체이닝이 실행 후 결과값이 nil일 수 있으므로
+// 결과 타입도 옵셔널
+
+// 만약 우리집의 경비원의 직업이 궁금하다면?
+
+// 옵셔널 체이닝을 사용하지 않는다면...
+func guardJob(owner: Person?) {
+    if let owner = owner {
+        if let home = owner.home {
+            if let `guard` = home.guard {
+                if let guardJob = `guard`.job {
+                    print("우리집 경비원의 직업은 \(guardJob)입니다")
+                } else {
+                    print("우리집 경비원은 직업이 없어요")
+                }
+            }
+        }
+    }
+}
+
+guardJob(owner: hey)
+
+// 옵셔널 체이닝을 사용한다면
+func guardJobWithOptionalChaining(owner: Person?) {
+    if let guardJob = owner?.home?.guard?.job { // owner부터 값 있는지 차례로 확인. nil이면 바로 값 확인 종료.
+        print("우리집 경비원의 직업은 \(guardJob)입니다")
+    } else {
+        print("우리집 경비원은 직업이 없어요")
+    }
+}
+
+guardJobWithOptionalChaining(owner: hey)
+// 우리집 경비원은 직업이 없어요
+
+
+hey?.home?.guard?.job // nil
+
+hey?.home = apart
+
+hey?.home // Optional(Apartment)
+hey?.home?.guard // nil
+
+// 경비원 할당
+hey?.home?.guard = superman
+
+hey?.home?.guard // Optional(Person)
+
+hey?.home?.guard?.name // superman
+hey?.home?.guard?.job // nil
+
+hey?.home?.guard?.job = "경비원"
+```
+
+
+
+
+
+2. **nil 병합 연산자**
+
+- 중위 연산자
+-  **`??`**
+- Optional **??** Value
+- 옵셔널 값이 **`nil`** 일 경우, 우측의 값을 반환
+- **띄어쓰기 주의**
+
+```swift
+var guardJob: String
+    
+guardJob = yagom?.home?.guard?.job ?? "슈퍼맨" // optional 값 존재
+print(guardJob) // 경비원
+
+yagom?.home?.guard?.job = nil
+
+guardJob = yagom?.home?.guard?.job ?? "슈퍼맨" // optional 값 없음. ?? 뒤에 오는 값 저장
+print(guardJob) // 슈퍼맨
+```
+
+
+
+
+
+### 24. 타입 캐스팅
 
