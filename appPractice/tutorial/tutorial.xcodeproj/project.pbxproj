@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E51BF6DD269B1E04002D7BB1 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51BF6DC269B1E04002D7BB1 /* PageControl.swift */; };
 		E52D1D522698833F00A7A26F /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52D1D512698833F00A7A26F /* PageViewController.swift */; };
 		E52D1D55269884AA00A7A26F /* FeatureCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52D1D54269884AA00A7A26F /* FeatureCard.swift */; };
 		E52D1D582698856600A7A26F /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52D1D572698856600A7A26F /* PageView.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E51BF6DC269B1E04002D7BB1 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		E52D1D512698833F00A7A26F /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		E52D1D54269884AA00A7A26F /* FeatureCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCard.swift; sourceTree = "<group>"; };
 		E52D1D572698856600A7A26F /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				E52D1D512698833F00A7A26F /* PageViewController.swift */,
 				E52D1D54269884AA00A7A26F /* FeatureCard.swift */,
 				E52D1D572698856600A7A26F /* PageView.swift */,
+				E51BF6DC269B1E04002D7BB1 /* PageControl.swift */,
 			);
 			path = PageView;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				E5BFB2602660078700D0352E /* MapView.swift in Sources */,
 				E5BF0444268E04E5002F723B /* GraphCapsule.swift in Sources */,
 				E5BFB24C265FF21800D0352E /* tutorialApp.swift in Sources */,
+				E51BF6DD269B1E04002D7BB1 /* PageControl.swift in Sources */,
 				E5F3CF18267F860F00812966 /* LandmarkList.swift in Sources */,
 				E597A5DB268F6B34004F7208 /* CategoryItem.swift in Sources */,
 				E5BF0446268E04E5002F723B /* HikeDetail.swift in Sources */,
