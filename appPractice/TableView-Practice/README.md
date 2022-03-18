@@ -41,3 +41,58 @@
 
 ![](./md-img/03.png)
 
+
+
+## API 관련 설정
+
+- 영화진흥위원회 OPEN API 활용 [링크](https://www.kobis.or.kr/kobisopenapi/homepg/main/main.do)
+  - 회원가입 후 키 발급 신청
+- 필요한 설정
+  - Xcode http 설정
+  - API KEY 숨기기
+  - 등등..
+
+1. Xcode 설정 바꾸기
+
+   - Apple의 앱 전송 보안(ATS)때문에 http 통신 위해서 아래와 같은 설정 필요 (사용할 api가 http 통신 사용하기 때문)
+   - Info.plist에서 아래 항목 추가
+
+   ![](./md-img/04.png)
+
+2. API KEY 숨기기
+
+   - 키값은 공개하면 곤란(아직은 공부 목적이지만)
+
+   - 간단한 방법 1: swift파일에 struct 하나 만들어서 그 안에 String으로 key 저장 후 gitignore 추가하기
+
+   - 사용한 방법
+
+     - plist 파일 생성 (또는 Info.plist 활용) 후 Key - Value 에 API KEY 값 작성
+       - 해당 plist 파일 gitignore 추가하기
+     - Bundle extension에 아래와 같이 작성 
+
+     ```swift
+     extension Bundle {
+         var apiKey: String {
+           get {
+             guard let filePath = self.path(forResource: "Properties", ofType: "plist") else { return "" }
+     
+             guard let resource = NSDictionary(contentsOfFile: filePath) else { return "" }
+             
+             guard let key = resource["API_KEY"] as? String else {
+               fatalError("API_KEY 설정이 필요합니다.")
+             }
+             
+             return key
+           }
+         }
+     }
+     ```
+
+     - 아래와 같이 사용
+
+     ```swift
+     let api_key = Bundle.main.apiKey
+     ```
+
+     
