@@ -13,4 +13,5 @@ class MovieVO {
     var movieNm: String?
     var openDt: String?
     var audiAcc: String?
+    var audiCnt: String?
 }
