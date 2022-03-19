@@ -95,4 +95,38 @@
      let api_key = Bundle.main.apiKey
      ```
 
-     
+
+
+## 날짜 계산
+
+- 오늘 날짜
+
+```swift
+let date = Date()
+```
+
+- 일주일 전 날짜
+
+```swift
+let dateBefore7Days = Calendar.current.date(byAdding: .day, value: -7, to: date)
+// 옵셔널 반환
+// value 음/양 정수 입력
+```
+
+- 문자열로 변환
+
+```swift
+let formatter = DateFormatter()
+formatter.dateFormat = "yyyyMMdd" // 원하는 출력 형식 작성
+let current_date = formatter.string(from: dateBefore7Days!)
+```
+
+
+
+## VO (Value Object)
+
+- 값을 저장하기 위한 객체
+- 읽기 전용 (getter / read only)
+- 비슷하지만 다른 DTO(Data Transfer Object)
+  - 데이터를 오브젝트로 변환하는 객체 / 데이터를 전달하기 위해 사용하는 객체
+  - 가변적 (getter, setter)
