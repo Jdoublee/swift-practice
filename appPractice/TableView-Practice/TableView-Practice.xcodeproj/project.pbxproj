@@ -17,6 +17,7 @@
 		E5E9F40027E4C0C800698E69 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F3FF27E4C0C800698E69 /* ListViewController.swift */; };
 		E5E9F40427E4D79200698E69 /* MovieVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F40327E4D79200698E69 /* MovieVO.swift */; };
 		E5E9F40727E6262100698E69 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F40627E6262100698E69 /* MovieCell.swift */; };
+		E5E9F40A27E6BD2F00698E69 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F40927E6BD2F00698E69 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		E5E9F3FF27E4C0C800698E69 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		E5E9F40327E4D79200698E69 /* MovieVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVO.swift; sourceTree = "<group>"; };
 		E5E9F40627E6262100698E69 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		E5E9F40927E6BD2F00698E69 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,14 +66,15 @@
 		E5E9F3DD27E36C3300698E69 /* TableView-Practice */ = {
 			isa = PBXGroup;
 			children = (
+				E5E9F3E727E36C3400698E69 /* Assets.xcassets */,
+				E5E9F3EC27E36C3400698E69 /* Info.plist */,
+				E5E9F3F627E4BA8A00698E69 /* Properties.plist */,
+				E5E9F3E927E36C3400698E69 /* LaunchScreen.storyboard */,
+				E5E9F3E427E36C3300698E69 /* Main.storyboard */,
 				E5E9F3DE27E36C3300698E69 /* AppDelegate.swift */,
 				E5E9F3E227E36C3300698E69 /* ViewController.swift */,
 				E5E9F3FF27E4C0C800698E69 /* ListViewController.swift */,
-				E5E9F3E427E36C3300698E69 /* Main.storyboard */,
-				E5E9F3E727E36C3400698E69 /* Assets.xcassets */,
-				E5E9F3E927E36C3400698E69 /* LaunchScreen.storyboard */,
-				E5E9F3EC27E36C3400698E69 /* Info.plist */,
-				E5E9F3F627E4BA8A00698E69 /* Properties.plist */,
+				E5E9F40927E6BD2F00698E69 /* DetailViewController.swift */,
 				E5E9F3F927E4BB9F00698E69 /* TableView-Practice++Bundle.swift */,
 				E5E9F40327E4D79200698E69 /* MovieVO.swift */,
 				E5E9F40627E6262100698E69 /* MovieCell.swift */,
@@ -156,6 +159,7 @@
 				E5E9F3FA27E4BB9F00698E69 /* TableView-Practice++Bundle.swift in Sources */,
 				E5E9F40027E4C0C800698E69 /* ListViewController.swift in Sources */,
 				E5E9F40427E4D79200698E69 /* MovieVO.swift in Sources */,
+				E5E9F40A27E6BD2F00698E69 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

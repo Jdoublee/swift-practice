@@ -3,11 +3,12 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--지난주 박스오피스 TOP10-->
+        <!--지난주 TOP10-->
         <scene sceneID="Jqr-6b-70K">
             <objects>
                 <tableViewController id="g2l-2Y-OXI" customClass="ListViewController" customModule="TableView_Practice" customModuleProvider="target" sceneMemberID="viewController">
@@ -33,8 +34,6 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="6Sw-pn-vLH"/>
                                                 <constraint firstAttribute="height" constant="60" id="gBG-8U-KUS"/>
-                                                <constraint firstAttribute="width" secondItem="v03-he-Xkw" secondAttribute="height" multiplier="1:1" id="oMV-82-NhL"/>
-                                                <constraint firstAttribute="width" secondItem="v03-he-Xkw" secondAttribute="height" multiplier="1:1" id="xu8-T9-V40"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2h-Qx-LSF">
@@ -89,6 +88,7 @@
                                     <outlet property="audienceCnt" destination="itO-Jy-0sp" id="Cn4-FQ-11f"/>
                                     <outlet property="movieName" destination="kdI-yu-AIu" id="p1K-1t-WkY"/>
                                     <outlet property="rankNum" destination="L2h-Qx-LSF" id="mqu-rL-FW3"/>
+                                    <segue destination="GyX-1H-Rq5" kind="show" identifier="segue_detail" id="NPR-tt-1WQ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -97,11 +97,52 @@
                             <outlet property="delegate" destination="g2l-2Y-OXI" id="3oL-yG-Ru2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="지난주 박스오피스 TOP10" id="CCw-zW-OFP"/>
+                    <navigationItem key="navigationItem" title="지난주 TOP10" id="CCw-zW-OFP"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WS4-HY-mUK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2671.0144927536235" y="205.58035714285714"/>
+        </scene>
+        <!--영화정보-->
+        <scene sceneID="aXa-xu-8wq">
+            <objects>
+                <viewController id="GyX-1H-Rq5" customClass="DetailViewController" customModule="TableView_Practice" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jlG-6w-l6y">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r8y-2p-r4Z">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="TYf-zt-RWb">
+                                <rect key="frame" x="188.5" y="432" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1VC-a6-yWu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="r8y-2p-r4Z" secondAttribute="bottom" id="0Gh-Oq-D3A"/>
+                            <constraint firstItem="TYf-zt-RWb" firstAttribute="centerX" secondItem="1VC-a6-yWu" secondAttribute="centerX" id="8us-Z1-mcV"/>
+                            <constraint firstItem="r8y-2p-r4Z" firstAttribute="trailing" secondItem="1VC-a6-yWu" secondAttribute="trailing" id="Hxv-v8-xpP"/>
+                            <constraint firstItem="r8y-2p-r4Z" firstAttribute="top" secondItem="jlG-6w-l6y" secondAttribute="top" id="aIH-dw-ByI"/>
+                            <constraint firstItem="TYf-zt-RWb" firstAttribute="centerY" secondItem="1VC-a6-yWu" secondAttribute="centerY" id="hLx-Or-gW2"/>
+                            <constraint firstItem="r8y-2p-r4Z" firstAttribute="leading" secondItem="1VC-a6-yWu" secondAttribute="leading" id="xrs-iC-TEV"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="영화정보" id="TsO-SX-3CC"/>
+                    <connections>
+                        <outlet property="spinner" destination="TYf-zt-RWb" id="G98-kb-dtQ"/>
+                        <outlet property="wv" destination="r8y-2p-r4Z" id="byu-aj-pME"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bUZ-Ii-kBN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3553.6231884057975" y="205.58035714285714"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="bIk-jT-rxT">
