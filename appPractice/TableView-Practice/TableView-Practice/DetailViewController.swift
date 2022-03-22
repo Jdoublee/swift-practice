@@ -16,7 +16,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         self.wv.navigationDelegate = self
-        NSLog("link url = https://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieList.do?dtTp=movie&dtCd=\(self.mvo.movieCd!), title = \(self.mvo.movieNm!)")
+        NSLog("movie name = \(self.mvo.movieNm!), movie code = \(self.mvo.movieCd!)")
         
         let navibar = self.navigationItem
         navibar.title = self.mvo.movieNm

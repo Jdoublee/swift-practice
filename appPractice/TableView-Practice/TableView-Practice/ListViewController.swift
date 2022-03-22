@@ -24,6 +24,8 @@ class ListViewController: UITableViewController {
         let current_date = formatter.string(from: dateBefore7Days!)
         
         self.callMovieAPI(today_date: current_date)
+        
+        tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "customHeader")
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -41,6 +43,10 @@ class ListViewController: UITableViewController {
 
     // 생성할 목록 길이 반환
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        if section == 0 {
+//            return 1
+//        }
+        
         return self.list.count
     }
 
@@ -60,6 +66,35 @@ class ListViewController: UITableViewController {
         return cell
     }
     
+    // 헤더 추가
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "customHeader")
+        
+        return header
+    }
+    
+    // 헤더 높이
+        override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+            return 40
+        }
+    
+    // 헤더 관련 설정
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        
+        let view = UIView(frame: .zero)
+        view.backgroundColor = .white
+        
+        let dateBefore7Days = Calendar.current.date(byAdding: .day, value: -7, to: Date())
+        let year = Calendar.current.component(.year, from: dateBefore7Days!)
+        let month = Calendar.current.component(.month, from: dateBefore7Days!)
+        let week = Calendar.current.component(.weekOfMonth, from: dateBefore7Days!)
+    
+        header.textLabel?.text = "<\(year)년 \(month)월 \(week)주차>"
+        header.textLabel?.textAlignment = .center
+        header.textLabel?.textColor = .black
+        header.backgroundView = view
+    }
 
     /*
     // Override to support conditional editing of the table view.

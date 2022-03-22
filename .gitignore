@@ -8,5 +8,6 @@ fc_practice.playground
 fc/
 
 *.xcuserstate
+# xcuserdata/
 
 Properties.plist
