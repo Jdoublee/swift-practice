@@ -183,6 +183,23 @@ class ListViewController: UITableViewController {
             let boxOfficeResult = apiDictionary["boxOfficeResult"] as! NSDictionary
             let weeklyBoxOfficeList = boxOfficeResult["weeklyBoxOfficeList"] as! NSArray
             
+            if weeklyBoxOfficeList.count == 0 {
+                currentDate = Calendar.current.date(byAdding: .day, value: -7, to: currentDate)!
+                
+                let alert = UIAlertController(title: "알림", message: "이번주 순위는 집계중입니다.", preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: "확인", style: .cancel) { _ in
+                    self.tableView.reloadData()
+                }
+                alert.addAction(ok)
+                
+                self.present(alert, animated: false) {
+                    self.callMovieAPI(today_date: self.currentDate)
+                }
+                
+                return
+            }
+            
             for row in weeklyBoxOfficeList {
                 let movie = row as! NSDictionary
                 
