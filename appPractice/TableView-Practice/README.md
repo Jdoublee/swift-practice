@@ -130,3 +130,34 @@ let current_date = formatter.string(from: dateBefore7Days!)
 - 비슷하지만 다른 DTO(Data Transfer Object)
   - 데이터를 오브젝트로 변환하는 객체 / 데이터를 전달하기 위해 사용하는 객체
   - 가변적 (getter, setter)
+
+
+
+## URL Parsing
+
+- 오픈 API URL 접근
+
+```swift
+// url 저장. 필요한 변수는 이전에 처리.
+let url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?..."
+// URL 형태로 저장
+let apiURI: URL! = URL(string: url)
+// URL 통해 응답되는 정보를 Data형에 저장
+let apiData = try! Data(contentsOf: apiURI)
+// 해당 Data형 정보(json) parsing -> Dictionary 형으로 저장
+let apiDictionary = try JSONSerialization.jsonObject(with: apiData, options: []) as! NSDictionary
+```
+
+- `URL(string:) ` 은 영문, 숫자만 인식 가능. **한글과 띄어쓰기 등은 인식 불가..**
+  - 한글이 url에 포함되어 있으면 nil 반환해서 에러 발생
+
+```swift
+// 지정된 Set에 없는 모든 문자를 백분율로 인코딩된 문자로 바꾸어 새로운 문자열을 반환해주는 함수 이용
+guard let encUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+// 인코딩된 URL 변환
+let apiURI: URL! = URL(string: encUrl)
+...
+```
+
+
+
