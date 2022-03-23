@@ -18,6 +18,7 @@
 		E5E9F40427E4D79200698E69 /* MovieVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F40327E4D79200698E69 /* MovieVO.swift */; };
 		E5E9F40727E6262100698E69 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F40627E6262100698E69 /* MovieCell.swift */; };
 		E5E9F40A27E6BD2F00698E69 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F40927E6BD2F00698E69 /* DetailViewController.swift */; };
+		E5E9F40E27EA1C2900698E69 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F40D27EA1C2900698E69 /* HeaderCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		E5E9F40327E4D79200698E69 /* MovieVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVO.swift; sourceTree = "<group>"; };
 		E5E9F40627E6262100698E69 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		E5E9F40927E6BD2F00698E69 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		E5E9F40D27EA1C2900698E69 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				E5E9F3F927E4BB9F00698E69 /* TableView-Practice++Bundle.swift */,
 				E5E9F40327E4D79200698E69 /* MovieVO.swift */,
 				E5E9F40627E6262100698E69 /* MovieCell.swift */,
+				E5E9F40D27EA1C2900698E69 /* HeaderCell.swift */,
 			);
 			path = "TableView-Practice";
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 				E5E9F3DF27E36C3300698E69 /* AppDelegate.swift in Sources */,
 				E5E9F40727E6262100698E69 /* MovieCell.swift in Sources */,
 				E5E9F3FA27E4BB9F00698E69 /* TableView-Practice++Bundle.swift in Sources */,
+				E5E9F40E27EA1C2900698E69 /* HeaderCell.swift in Sources */,
 				E5E9F40027E4C0C800698E69 /* ListViewController.swift in Sources */,
 				E5E9F40427E4D79200698E69 /* MovieVO.swift in Sources */,
 				E5E9F40A27E6BD2F00698E69 /* DetailViewController.swift in Sources */,

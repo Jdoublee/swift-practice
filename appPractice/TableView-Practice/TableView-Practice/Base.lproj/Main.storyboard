@@ -16,34 +16,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="kuP-Do-gh0">
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2022년 12월 4주차" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qB-3l-kZN">
+                                    <rect key="frame" x="128.66666666666666" y="12" width="132.99999999999997" height="20"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7cI-K3-r6o">
+                                    <rect key="frame" x="30" y="11" width="20" height="23"/>
+                                    <state key="normal" image="arrow.left.circle" catalog="system"/>
+                                    <connections>
+                                        <action selector="weekBefore:" destination="g2l-2Y-OXI" eventType="touchUpInside" id="tPz-wu-Mrl"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6G-t9-Zij">
+                                    <rect key="frame" x="340" y="11" width="20" height="22"/>
+                                    <state key="normal" image="arrow.right.circle" catalog="system"/>
+                                    <connections>
+                                        <action selector="weekAfter:" destination="g2l-2Y-OXI" eventType="touchUpInside" id="XPf-Hy-Nh0"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="d6G-t9-Zij" secondAttribute="trailing" constant="30" id="9sl-PC-9mK"/>
+                                <constraint firstItem="7cI-K3-r6o" firstAttribute="leading" secondItem="kuP-Do-gh0" secondAttribute="leading" constant="30" id="GL4-hg-Fz5"/>
+                                <constraint firstItem="1qB-3l-kZN" firstAttribute="centerY" secondItem="kuP-Do-gh0" secondAttribute="centerY" id="NZR-I2-R2t"/>
+                                <constraint firstItem="7cI-K3-r6o" firstAttribute="centerY" secondItem="kuP-Do-gh0" secondAttribute="centerY" id="UNM-Wi-4UC"/>
+                                <constraint firstItem="1qB-3l-kZN" firstAttribute="centerX" secondItem="kuP-Do-gh0" secondAttribute="centerX" id="bmU-N6-L7C"/>
+                                <constraint firstItem="d6G-t9-Zij" firstAttribute="centerY" secondItem="kuP-Do-gh0" secondAttribute="centerY" id="eIz-Fr-zsk"/>
+                            </constraints>
+                        </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="95x-B0-wwI">
-                            <rect key="frame" x="0.0" y="166" width="390" height="44"/>
+                            <rect key="frame" x="0.0" y="160" width="390" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="50" id="rJi-ys-3xl">
-                                <rect key="frame" x="0.0" y="28" width="390" height="50"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rJi-ys-3xl" id="nXr-gt-k8u">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2022년 3월 1주차" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zN-Ft-HKZ">
-                                            <rect key="frame" x="134" y="15.666666666666664" width="122" height="19"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="5zN-Ft-HKZ" firstAttribute="centerY" secondItem="nXr-gt-k8u" secondAttribute="centerY" id="Qdl-le-dGT"/>
-                                        <constraint firstItem="5zN-Ft-HKZ" firstAttribute="centerX" secondItem="nXr-gt-k8u" secondAttribute="centerX" id="mHA-n2-JEW"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="WeeklyCell" rowHeight="60" id="abS-HK-B6o" customClass="MovieCell" customModule="TableView_Practice" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="78" width="390" height="60"/>
+                                <rect key="frame" x="0.0" y="72" width="390" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="abS-HK-B6o" id="yDP-4k-6tg">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="60"/>
@@ -118,6 +133,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="지난주 TOP10" id="CCw-zW-OFP"/>
+                    <connections>
+                        <outlet property="weekInfo" destination="1qB-3l-kZN" id="0Y6-M5-6XM"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WS4-HY-mUK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -204,6 +222,8 @@
     </scenes>
     <resources>
         <image name="Circle" width="912" height="912"/>
+        <image name="arrow.left.circle" catalog="system" width="128" height="121"/>
+        <image name="arrow.right.circle" catalog="system" width="128" height="121"/>
         <image name="chart.bar.doc.horizontal" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
