@@ -18,6 +18,9 @@
 		E5E9F40427E4D79200698E69 /* MovieVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F40327E4D79200698E69 /* MovieVO.swift */; };
 		E5E9F40727E6262100698E69 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F40627E6262100698E69 /* MovieCell.swift */; };
 		E5E9F40A27E6BD2F00698E69 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F40927E6BD2F00698E69 /* DetailViewController.swift */; };
+		E5E9F41227EB4E3F00698E69 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F41127EB4E3F00698E69 /* SearchViewController.swift */; };
+		E5E9F41627EB510C00698E69 /* PeopleVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F41527EB510C00698E69 /* PeopleVO.swift */; };
+		E5E9F41A27EB65B700698E69 /* PeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F41927EB65B600698E69 /* PeopleCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		E5E9F40327E4D79200698E69 /* MovieVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVO.swift; sourceTree = "<group>"; };
 		E5E9F40627E6262100698E69 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		E5E9F40927E6BD2F00698E69 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		E5E9F41127EB4E3F00698E69 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		E5E9F41527EB510C00698E69 /* PeopleVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleVO.swift; sourceTree = "<group>"; };
+		E5E9F41927EB65B600698E69 /* PeopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,9 +81,12 @@
 				E5E9F3E227E36C3300698E69 /* ViewController.swift */,
 				E5E9F3FF27E4C0C800698E69 /* ListViewController.swift */,
 				E5E9F40927E6BD2F00698E69 /* DetailViewController.swift */,
+				E5E9F41127EB4E3F00698E69 /* SearchViewController.swift */,
 				E5E9F3F927E4BB9F00698E69 /* TableView-Practice++Bundle.swift */,
 				E5E9F40327E4D79200698E69 /* MovieVO.swift */,
+				E5E9F41527EB510C00698E69 /* PeopleVO.swift */,
 				E5E9F40627E6262100698E69 /* MovieCell.swift */,
+				E5E9F41927EB65B600698E69 /* PeopleCell.swift */,
 			);
 			path = "TableView-Practice";
 			sourceTree = "<group>";
@@ -155,10 +164,13 @@
 			files = (
 				E5E9F3E327E36C3300698E69 /* ViewController.swift in Sources */,
 				E5E9F3DF27E36C3300698E69 /* AppDelegate.swift in Sources */,
+				E5E9F41A27EB65B700698E69 /* PeopleCell.swift in Sources */,
+				E5E9F41227EB4E3F00698E69 /* SearchViewController.swift in Sources */,
 				E5E9F40727E6262100698E69 /* MovieCell.swift in Sources */,
 				E5E9F3FA27E4BB9F00698E69 /* TableView-Practice++Bundle.swift in Sources */,
 				E5E9F40027E4C0C800698E69 /* ListViewController.swift in Sources */,
 				E5E9F40427E4D79200698E69 /* MovieVO.swift in Sources */,
+				E5E9F41627EB510C00698E69 /* PeopleVO.swift in Sources */,
 				E5E9F40A27E6BD2F00698E69 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
