@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchViewController: UITableViewController {
-    var list: [PeopleVO] = []
+    var peopleList: [PeopleVO] = []
     var curPage = 1
     var peopleName: String = ""
     
@@ -16,17 +16,50 @@ class SearchViewController: UITableViewController {
     @IBAction func searchBtn(_ sender: Any) {
         peopleName = tfName.text!
         curPage = 1
-        list = [PeopleVO]()
-        callPeopleAPI(name: peopleName)
+        peopleList = [PeopleVO]()
+        
+        self.callPeopleAPI(name: peopleName)
+        self.tableView.reloadData() // 테이블 뷰 안나오는거 해결.
     }
     
     @IBOutlet var moreBtn: UIButton!
     @IBAction func more(_ sender: Any) {
-        callPeopleAPI(name: peopleName)
+        self.callPeopleAPI(name: peopleName)
+        self.tableView.reloadData()
     }
     
     override func viewDidLoad() {
         self.moreBtn.isHidden = true
+    }
+    
+    // MARK: - Table view data source
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.peopleList.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = self.peopleList[indexPath.row]
+        
+        NSLog("제목:\(row.peopleNm!), 호출된 행번호:\(indexPath.row)")
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell") as! PeopleCell
+        
+        cell.peopleName?.text = row.peopleNm
+        cell.peopleNameEng?.text = row.peopleNmEn
+        cell.roleName?.text = row.repRoleNm
+        cell.filmoNames?.text = row.filmoNames
+        
+        return cell
     }
     
     func callPeopleAPI(name: String) {
@@ -52,23 +85,23 @@ class SearchViewController: UITableViewController {
             let peopleList = peopleListResult["peopleList"] as! NSArray
             
             for row in peopleList {
-                let r = row as! NSDictionary
+                let people = row as! NSDictionary
                 
                 let pvo = PeopleVO()
                 
-                pvo.peopleCd = r["peopleCd"] as? String
-                pvo.peopleNm = r["peopleNm"] as? String
-                pvo.peopleNmEn = r["peopleNmEn"] as? String
-                pvo.repRoleNm = r["repRoleNm"] as? String
-                pvo.filmoNames = r["filmoNames"] as? String
+                pvo.peopleCd = people["peopleCd"] as? String
+                pvo.peopleNm = people["peopleNm"] as? String
+                pvo.peopleNmEn = people["peopleNmEn"] as? String
+                pvo.repRoleNm = people["repRoleNm"] as? String
+                pvo.filmoNames = people["filmoNames"] as? String
                 
-                self.list.append(pvo)
-                
+                self.peopleList.append(pvo)
+                                
             }
             
             let totalCount = peopleListResult["totCnt"] as! Int
             
-            if (self.list.count < totalCount) {
+            if (self.peopleList.count < totalCount) {
                 self.moreBtn.isHidden = false
                 curPage += 1
             } else {
