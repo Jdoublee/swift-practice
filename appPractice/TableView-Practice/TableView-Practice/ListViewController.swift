@@ -47,7 +47,7 @@ class ListViewController: UITableViewController {
         
         self.callMovieAPI(today_date: currentDate)
         
-        tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "customHeader")
+//        tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "customHeader")
     }
 
     // MARK: - Table view data source
