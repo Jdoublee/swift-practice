@@ -160,12 +160,15 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="Q4j-9U-wAG" id="P6v-na-dsd"/>
+                                    </connections>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llY-Kp-ALm">
                                     <rect key="frame" x="320.33333333333331" y="44" width="19.666666666666686" height="22"/>
                                     <state key="normal" image="magnifyingglass" catalog="system"/>
                                     <connections>
-                                        <action selector="searchBtn:" destination="Q4j-9U-wAG" eventType="touchUpInside" id="p6W-GU-co1"/>
+                                        <action selector="search:" destination="Q4j-9U-wAG" eventType="touchUpInside" id="tgA-uY-kZw"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -260,6 +263,7 @@
                     <navigationItem key="navigationItem" title="영화인 정보" id="O3N-EO-yvp"/>
                     <connections>
                         <outlet property="moreBtn" destination="YNP-hm-Jwa" id="M2q-7z-bHw"/>
+                        <outlet property="searchBtn" destination="llY-Kp-ALm" id="Ska-AF-e6u"/>
                         <outlet property="tfName" destination="CSS-lG-cgh" id="Bka-96-IkE"/>
                     </connections>
                 </tableViewController>

@@ -7,17 +7,20 @@
 
 import UIKit
 
-class SearchViewController: UITableViewController {
+class SearchViewController: UITableViewController, UITextFieldDelegate {
     var peopleList: [PeopleVO] = []
     var curPage = 1
     var peopleName: String = ""
     
     @IBOutlet var tfName: UITextField!
-    @IBAction func searchBtn(_ sender: Any) {
+    @IBOutlet var searchBtn: UIButton!
+    
+    @IBAction func search(_ sender: Any) {
         peopleName = tfName.text!
         curPage = 1
         peopleList = [PeopleVO]()
         
+        self.tfName.endEditing(true)
         self.callPeopleAPI(name: peopleName)
         self.tableView.reloadData() // 테이블 뷰 안나오는거 해결.
     }
@@ -30,6 +33,7 @@ class SearchViewController: UITableViewController {
     
     override func viewDidLoad() {
         self.moreBtn.isHidden = true
+        self.hideKeyboard()
     }
     
     // MARK: - Table view data source
@@ -60,6 +64,15 @@ class SearchViewController: UITableViewController {
         cell.filmoNames?.text = row.filmoNames
         
         return cell
+    }
+    
+    // MARK: - UITextField Delegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        self.search(self.searchBtn!)
+        
+        return true
     }
     
     func callPeopleAPI(name: String) {
@@ -110,11 +123,18 @@ class SearchViewController: UITableViewController {
         } catch {
             NSLog("Parse Error!!")
         }
-        
-        
-        
-        
-        
-        
+    }
+}
+
+extension SearchViewController {
+    func hideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(SearchViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
