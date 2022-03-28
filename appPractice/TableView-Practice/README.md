@@ -161,3 +161,56 @@ let apiURI: URL! = URL(string: encUrl)
 
 
 
+## 키보드 관련 설정
+
+- 키보드 올라와 있는 상태에서 나머지 화면 터치하여 키보드 내리기 구현
+
+  - 여러 뷰컨트롤러에서 사용 가능하도록 extension에 함수로 작성
+
+  ```swift
+  extension SearchViewController {
+      func hideKeyboard() {
+          let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SearchViewController.dismissKeyboard))
+          view.addGestureRecognizer(tap)
+      }
+      
+      @objc func dismissKeyboard() {
+          view.endEditing(true)
+      }
+  }
+  ```
+
+  - viewDidLoad() 에 추가
+
+  ```swift
+  override func viewDidLoad() {
+      self.hideKeyboard()
+  }
+  ```
+
+- 키보드 엔터 입력시 키보드 내리기 & 검색 되도록 구현
+
+  - UITextFieldDelegate 프로토콜 구현 및 delegate 연결 필요(코드 또는 스토리보드에서)
+
+  ```swift
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+      textField.resignFirstResponder()
+          
+      self.search(self.searchBtn!)
+          
+      return true
+  }
+  ```
+
+- 검색 버튼 클릭시 키보드 내리기 구현
+
+  ```swift
+  @IBAction func search(_ sender: Any) {
+      ...
+      self.tfName.endEditing(true)
+      ...
+  }
+  ```
+
+  
+
