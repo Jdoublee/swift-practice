@@ -137,4 +137,16 @@ extension SearchViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segue_peopleInfo" {
+            let cell = sender as! PeopleCell
+            let path = self.tableView.indexPath(for: cell)
+            
+            let peopleinfo = self.peopleList[path!.row]
+            
+            let peopleInfoVC = segue.destination as? PeopleInfoViewController
+            peopleInfoVC?.pvo = peopleinfo
+        }
+    }
 }

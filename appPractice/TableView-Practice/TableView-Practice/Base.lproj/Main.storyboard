@@ -213,17 +213,17 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kim Minnie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsT-Cr-uKz">
-                                            <rect key="frame" x="82" y="21.666666666666668" width="72.666666666666686" height="17.000000000000004"/>
+                                            <rect key="frame" x="77" y="21.666666666666668" width="72.666666666666686" height="17.000000000000004"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                             <color key="textColor" systemColor="systemGrayColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="뽀롱뽀롱 뽀로로" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7S3-VW-QFk">
-                                            <rect key="frame" x="200" y="30" width="150" height="20"/>
+                                            <rect key="frame" x="200" y="33" width="150" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="150" id="7aD-xr-sdG"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -239,7 +239,7 @@
                                         <constraint firstItem="TsT-Cr-uKz" firstAttribute="centerY" secondItem="1XK-is-KK4" secondAttribute="centerY" id="BWc-n1-RO9"/>
                                         <constraint firstItem="mdz-Xc-nwx" firstAttribute="centerY" secondItem="1XK-is-KK4" secondAttribute="centerY" id="GxW-fV-y3G"/>
                                         <constraint firstAttribute="bottom" secondItem="7S3-VW-QFk" secondAttribute="bottom" constant="10" id="pl8-mb-msT"/>
-                                        <constraint firstItem="TsT-Cr-uKz" firstAttribute="leading" secondItem="mdz-Xc-nwx" secondAttribute="trailing" constant="5" id="tlM-cK-PTB"/>
+                                        <constraint firstItem="TsT-Cr-uKz" firstAttribute="leading" secondItem="mdz-Xc-nwx" secondAttribute="trailing" id="tlM-cK-PTB"/>
                                         <constraint firstItem="Y1S-XO-qgI" firstAttribute="top" secondItem="1XK-is-KK4" secondAttribute="top" constant="10" id="vli-m9-CEs"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -252,6 +252,7 @@
                                     <outlet property="peopleName" destination="mdz-Xc-nwx" id="mlH-zm-rUb"/>
                                     <outlet property="peopleNameEng" destination="TsT-Cr-uKz" id="TwC-Yx-JfL"/>
                                     <outlet property="roleName" destination="Y1S-XO-qgI" id="xVu-lF-Dot"/>
+                                    <segue destination="RoD-jB-LGV" kind="show" identifier="segue_peopleInfo" id="Y4E-xI-IDm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -270,6 +271,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ypp-Cf-Yg0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2667.6923076923076" y="941.94312796208521"/>
+        </scene>
+        <!--People Info View Controller-->
+        <scene sceneID="UwO-T3-azh">
+            <objects>
+                <viewController id="RoD-jB-LGV" customClass="PeopleInfoViewController" customModule="TableView_Practice" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="96q-eB-3On">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="김민희" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qd-VL-Xhu">
+                                <rect key="frame" x="38" y="124" width="52" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qqx-UU-GmV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="rKV-Dn-nw9"/>
+                    <connections>
+                        <outlet property="peopleName" destination="9qd-VL-Xhu" id="1Qm-DF-8B2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="viU-ue-FmY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3552" y="942"/>
         </scene>
         <!--영화정보-->
         <scene sceneID="aXa-xu-8wq">

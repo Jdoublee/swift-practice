@@ -21,6 +21,7 @@
 		E5E9F41227EB4E3F00698E69 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F41127EB4E3F00698E69 /* SearchViewController.swift */; };
 		E5E9F41627EB510C00698E69 /* PeopleVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F41527EB510C00698E69 /* PeopleVO.swift */; };
 		E5E9F41A27EB65B700698E69 /* PeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F41927EB65B600698E69 /* PeopleCell.swift */; };
+		E5E9F41D27F34EA000698E69 /* PeopleInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E9F41C27F34E9F00698E69 /* PeopleInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		E5E9F41127EB4E3F00698E69 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		E5E9F41527EB510C00698E69 /* PeopleVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleVO.swift; sourceTree = "<group>"; };
 		E5E9F41927EB65B600698E69 /* PeopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCell.swift; sourceTree = "<group>"; };
+		E5E9F41C27F34E9F00698E69 /* PeopleInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				E5E9F3FF27E4C0C800698E69 /* ListViewController.swift */,
 				E5E9F40927E6BD2F00698E69 /* DetailViewController.swift */,
 				E5E9F41127EB4E3F00698E69 /* SearchViewController.swift */,
+				E5E9F41C27F34E9F00698E69 /* PeopleInfoViewController.swift */,
 				E5E9F3F927E4BB9F00698E69 /* TableView-Practice++Bundle.swift */,
 				E5E9F40327E4D79200698E69 /* MovieVO.swift */,
 				E5E9F41527EB510C00698E69 /* PeopleVO.swift */,
@@ -172,6 +175,7 @@
 				E5E9F40427E4D79200698E69 /* MovieVO.swift in Sources */,
 				E5E9F41627EB510C00698E69 /* PeopleVO.swift in Sources */,
 				E5E9F40A27E6BD2F00698E69 /* DetailViewController.swift in Sources */,
+				E5E9F41D27F34EA000698E69 /* PeopleInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
