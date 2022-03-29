@@ -12,7 +12,18 @@ class PeopleInfoViewController: UIViewController {
     
     var pvo: PeopleVO!
     
+    var filmoList = [String]()
+    
     override func viewDidLoad() {
         self.peopleName.text = pvo.peopleNm
+        seperateFilmoNames()
+    }
+    
+    func seperateFilmoNames() {
+        let seperatedList = self.pvo.filmoNames!.split(separator: "|")
+        
+        for sep in seperatedList {
+            filmoList.append(String(sep))
+        }
     }
 }
