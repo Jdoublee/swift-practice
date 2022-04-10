@@ -28,9 +28,9 @@ class PeopleInfoViewController: UIViewController, UICollectionViewDelegate, UICo
         
         cell.update(filmo: filmoList[indexPath.item])
         // 둥글게
+        cell.layer.cornerRadius = 10
 //        cell.layer.borderWidth = 1
 //        cell.layer.borderColor = UIColor.blue.cgColor
-        cell.layer.cornerRadius = 10
         
         return cell
     }
@@ -38,8 +38,8 @@ class PeopleInfoViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let tmpLabel : UILabel = UILabel()
         tmpLabel.text = filmoList[indexPath.item]
-                
-        return CGSize(width: tmpLabel.intrinsicContentSize.width, height: 35)
+        // Dynamic cell sizing
+        return CGSize(width: tmpLabel.intrinsicContentSize.width, height: 35) // 라벨 텍스트 길이만큼의 너비 반환 (height는 일단 고정)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
