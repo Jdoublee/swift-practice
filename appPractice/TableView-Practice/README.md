@@ -212,5 +212,40 @@ let apiURI: URL! = URL(string: encUrl)
   }
   ```
 
-  
+
+
+## UILabel Padding 설정
+
+- UILabel 에는 padding/margin 설정이 따로 없음 (`inset` 이라고 함)
+
+- Label의 Text가 그려지는 시점에 해당 패딩이 설정되도록 클래스 작성
+
+  - `intrinsicContentSize` 값은 inset 설정 전과 동일 (라벨 텍스트 짤림 현상 발생)
+    - 오버라이드해서 변경 적용 필요
+
+  ```swift
+  class paddingLabel: UILabel {
+    // 스토리보드의 Attributes Inspector 영역에서 값 조절 가능
+    // 아래 drawText에 바로 값 넣어줘도 됨(스토리보드에서 조절 불가)
+      @IBInspectable var topInset: CGFloat = 6.0
+      @IBInspectable var bottomInset: CGFloat = 6.0
+      @IBInspectable var leftInset: CGFloat = 6.0
+      @IBInspectable var rightInset: CGFloat = 6.0
+      
+    // Label의 Text를 그리는 함수
+      override func drawText(in rect: CGRect) {
+          let insets = UIEdgeInsets.init(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
+          super.drawText(in: rect.inset(by: insets))
+      }
+  // UILabel의 intrinsicContentSize + inset 계산 수행하여 해당 반환 값 활용
+      override var intrinsicContentSize: CGSize {
+          let size = super.intrinsicContentSize
+          return CGSize(width: size.width + leftInset + rightInset, height: size.height + topInset + bottomInset)
+      }
+  }
+  ```
+
+- 적용 전후 비교
+
+  ![](./md-img/05.png)
 
