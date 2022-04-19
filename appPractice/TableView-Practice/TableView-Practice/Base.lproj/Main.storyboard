@@ -448,7 +448,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Circle" width="912" height="912"/>
+        <image name="Circle" width="1268.5" height="1248"/>
         <image name="arrow.left.circle" catalog="system" width="128" height="121"/>
         <image name="arrow.right.circle" catalog="system" width="128" height="121"/>
         <image name="chart.bar.doc.horizontal" catalog="system" width="115" height="128"/>
