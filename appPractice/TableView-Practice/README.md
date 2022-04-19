@@ -249,3 +249,15 @@ let apiURI: URL! = URL(string: encUrl)
 
   ![](./md-img/05.png)
 
+
+
+## 다크모드 관련 설정
+
+- Assets(이미지)
+
+  - Assets.xcassets에서 해당 이미지 에셋(자원) 선택
+  - 우측 Attributes Inspector에서 Appearance 영역 None -> 원하는 설정으로 변경
+  - 라이트모드/다크모드 맞는 이미지 설정해주기
+
+  ![](./md-img/06.png)
+
